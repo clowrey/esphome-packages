@@ -10,3 +10,7 @@ web_server:
 ota:
   platform: esphome
   password: !secret ota_password
+
+api:
+  encryption:
+    key: !secret api_encryption_key
