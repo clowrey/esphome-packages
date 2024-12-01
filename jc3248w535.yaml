@@ -1,0 +1,98 @@
+# Guition ESP32-S3-jc3248w535 320px X 480px Dev Board
+# Hardware configuration file
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  min_version: 2024.11.0
+  platformio_options:
+    board_build.flash_mode: dio
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      COMPILER_OPTIMIZATION_SIZE: y
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+      CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
+      CONFIG_SPIRAM_RODATA: y
+
+preferences:
+  flash_write_interval: 1min      
+
+psram:
+  mode: octal
+  speed: 80MHz #cant go faster than 80 will revert to 40
+
+#-------------------------------------------
+# Internal outputs
+#-------------------------------------------
+output:
+    # Backlight LED
+  - platform: ledc
+    pin: GPIO1
+    id: backlight
+    frequency: 100Hz
+
+light:
+  - platform: monochromatic
+    output: backlight
+    name: Display Backlight
+    id: display_backlight
+    restore_mode: ALWAYS_ON
+
+#-------------------------------------------
+# Touchscreen
+#-------------------------------------------
+
+i2c:
+  sda: 4
+  scl: 8
+  id: touchscreen_bus
+
+touchscreen:
+  - platform: axs15231
+    id: my_touchscreen
+    display: my_display
+    i2c_id: touchscreen_bus
+    transform:
+      swap_xy: true
+    on_touch:
+      - lambda: |-
+          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+            touch.x,
+            touch.y,
+            touch.x_raw,
+            touch.y_raw
+          );
+
+#-------------------------------------------
+# Display axs15231 QSPI
+#-------------------------------------------
+
+spi:
+  id: display_qspi
+  type: quad
+  clk_pin: 47
+  data_pins: [21, 48, 40, 39]
+  
+display:
+  - platform: qspi_dbi
+    model: axs15231
+    data_rate: 40MHz
+    id: my_display
+    spi_id: display_qspi
+    dimensions:
+      height: 480
+      width: 320
+    cs_pin: 45
+    rotation: 90 # 90 for landscape, 0 for portrait
+    #update_interval: never
+    auto_clear_enabled: false
+    #show_test_card: true # must enable update_interval, auto_clear_enable
+
