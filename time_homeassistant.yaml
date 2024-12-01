@@ -10,9 +10,9 @@ time:
                 id: device_last_restart
                 state: !lambda 'return id(system_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
 
-text_sensor:
-  - platform: template
-    name: 'Last Restart'
-    id: device_last_restart
-    icon: mdi:clock
-    entity_category: diagnostic
+#text_sensor: # defined in sensors_diagnostic.yaml
+#  - platform: template
+#    name: 'Last Restart'
+#    id: device_last_restart
+#    icon: mdi:clock
+#    entity_category: diagnostic
