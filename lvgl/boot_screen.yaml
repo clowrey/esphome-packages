@@ -1,5 +1,7 @@
 ---
 # Boot Screen
+lvgl:
+  top_layer: 
     widgets:
       - obj:
           id: boot_screen
@@ -13,11 +15,11 @@
           bg_color: white
           bg_opa: COVER
           radius: 0
-          pad_all: 5
+          pad_all: 2
           widgets:
             - image:
                 src: boot_logo
-                pad_bottom: 10
+                pad_bottom: 5
             - label:
                 id: esphome_version_label
                 text:
