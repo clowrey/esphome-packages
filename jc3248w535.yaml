@@ -66,14 +66,14 @@ touchscreen:
     i2c_id: touchscreen_bus
     transform:
       swap_xy: true
-    on_touch:
-      - lambda: |-
-          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-            touch.x,
-            touch.y,
-            touch.x_raw,
-            touch.y_raw
-          );
+    #on_touch:
+    #  - lambda: |-
+    #      ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+    #        touch.x,
+    #        touch.y,
+    #        touch.x_raw,
+    #        touch.y_raw
+    #      );
 
 #-------------------------------------------
 # Display axs15231 QSPI
@@ -94,9 +94,12 @@ display:
     dimensions:
       height: 480
       width: 320
-    cs_pin: 45
+    cs_pin:
+      number: 45
+      ignore_strapping_warning: true
+    draw_from_origin: true
     rotation: 90 # 90 for landscape, 0 for portrait
-    #update_interval: never
+    update_interval: never
     auto_clear_enabled: false
     #show_test_card: true # must enable update_interval, auto_clear_enable
 
