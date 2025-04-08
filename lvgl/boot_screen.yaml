@@ -1,7 +1,4 @@
----
 # Boot Screen
-lvgl:
-  top_layer: 
     widgets:
       - obj:
           id: boot_screen
@@ -15,31 +12,37 @@ lvgl:
           bg_color: white
           bg_opa: COVER
           radius: 0
-          pad_all: 2
+          pad_all: 5
           widgets:
             - image:
-                src: boot_logo
-                pad_bottom: 5
+                src: boot_logo_90px
+                pad_bottom: 10
             - label:
                 id: esphome_version_label
+                text_color: black
                 text:
                   format: "ESPHome Version: %s"
                   args: [ 'id(esphome_version).state.c_str()' ]
             - label:
+                text_color: black
                 text:
                   format: "Build Date: %s - %s"
                   args: [__DATE__, __TIME__]
             - label:
                 id: connected_mac_label
+                text_color: black
                 text: "MAC Address: Not Connected"
             - label:
                 id: ip_address_label
+                text_color: black
                 text: "IP Address: Not Connected"
             - label:
                 id: connected_ssid_label
+                text_color: black
                 text: "Connected SSID: Not Connected"
             - label:
                 id: wifi_signal_db_percent_label
+                text_color: black
                 text: "WiFi Strength: Not Connected"
             - obj:
                radius: 0
@@ -51,7 +54,6 @@ lvgl:
                  - button:
                     align: bottom_right
                     x: -10
-                    y: -10
                     radius: 15
                     width: 100
                     height: 60
