@@ -102,7 +102,7 @@ display:
     # The display can be rotated 180 or mirrored using mirror_x and mirror_y, but swap_xy does not work.
     # Software rotation using rotation: 90 works (also for 270) but requires full screen redraws so is slow. The display itself is quite fast so it’s still usable though.
     # 90 & 270 need swap_xy to be true in the touchscreen section
-    rotation: 0 # 90 for landscape, 0 for portrait
+    rotation: 270 # 90 for landscape, 0 for portrait
     #draw_from_origin: true
     #update_interval: never
     auto_clear_enabled: false
