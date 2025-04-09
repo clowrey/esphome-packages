@@ -42,7 +42,7 @@ output:
   - platform: ledc
     pin: GPIO1
     id: backlight
-    frequency: 100Hz
+    frequency: 1000Hz
 
 light:
   - platform: monochromatic
