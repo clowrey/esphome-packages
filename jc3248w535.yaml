@@ -66,7 +66,7 @@ touchscreen:
     display: my_display
     i2c_id: touchscreen_bus
     transform:
-      swap_xy: true
+      swap_xy: #true
       mirror_x: true
     on_touch:
       - lambda: |-
