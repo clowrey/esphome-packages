@@ -31,6 +31,7 @@ psram:
 
 # Enable logging
 logger:
+  level: INFO
   hardware_uart: USB_SERIAL_JTAG
 
 #-------------------------------------------
@@ -64,10 +65,9 @@ touchscreen:
     id: my_touchscreen
     display: my_display
     i2c_id: touchscreen_bus
-    #transform:
-    #  mirror_x: false
-      #mirror_y: true
-      #swap_xy: true # true for rotation 90 or 270
+    transform:
+      swap_xy: true
+      mirror_y: true
     on_touch:
       - lambda: |-
           ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
