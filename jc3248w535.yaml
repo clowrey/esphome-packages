@@ -67,7 +67,7 @@ touchscreen:
     transform:
     #  mirror_x: false
       #mirror_y: true
-      swap_xy: true # true for rotation 90 or 270
+      #swap_xy: true # true for rotation 90 or 270
     on_touch:
       - lambda: |-
           ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
