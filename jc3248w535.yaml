@@ -77,8 +77,8 @@ touchscreen:
       y_max: 320
     transform:
       swap_xy: true
-      mirror_x: false
-      mirror_y: true
+      mirror_x: true
+      mirror_y: false
     on_touch:
       - lambda: |-
           ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
